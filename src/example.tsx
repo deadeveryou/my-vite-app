@@ -17,6 +17,7 @@ const Example: React.FC<any> = () => {
   const chartRef = useRef(null);
 
   useEffect(() => {
+    // ip地址修改
     fetchData("http://43.143.34.210:6001/file/province/get", {}, setProvince);
   }, []);
 
@@ -114,6 +115,7 @@ const Example: React.FC<any> = () => {
     Object.entries(result).forEach(([key, values = []]) => {
       if (values && Array.isArray(values)) {
         values.forEach((item) => {
+          item.date = moment(item.date).format("YYYY-MM-DD")
           const obj = {
             time: item.date,
             province: key,
@@ -140,6 +142,7 @@ const Example: React.FC<any> = () => {
       startDate: values.RangePicker[0],
       endDate: values.RangePicker[1],
     };
+    // ip地址修改
     fetchData("http://43.143.34.210:6001/file/data/get", params, resetData);
   };
 
