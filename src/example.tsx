@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Button, Form, Select, Space, Table, DatePicker } from "antd";
+import { Button, Form, Select, Space, Table, DatePicker, Image } from "antd";
 import * as echarts from "echarts";
 import moment from "moment";
 import axios from "axios";
 import "./index.less";
+import { ImgUtil } from "./utils/imgUtils";
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -103,7 +104,6 @@ const Example: React.FC<any> = () => {
     callBack: (result: any) => void
   ) => {
     axios.post(url, params).then((res) => {
-      console.log(res);
       if (res?.data?.data) {
         callBack(res?.data?.data);
       }
@@ -152,6 +152,7 @@ const Example: React.FC<any> = () => {
 
   return (
     <div className="container">
+      <Image src={ImgUtil.getImg("pic1.webp")} />
       <Form form={form} onFinish={handleSumbit} layout="inline">
         <Space wrap>
           <Form.Item
